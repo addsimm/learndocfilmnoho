@@ -3,14 +3,14 @@
 from google.appengine.ext import ndb
 
 
-def flatpages_key():
-    """Constructs a Datastore key for the Flatpages entity named pages."""
-    return ndb.Key('Flatpages', 'pages')
+def doc927s_key():
+    """Constructs a Datastore key for the Doc927s entity named doc927s."""
+    return ndb.Key('Doc927s', 'doc927s')
 
 
-class Flatpage(ndb.Model):
-    fp_author = ndb.StringProperty()
-    fp_content = ndb.TextProperty()
-    fp_date_created = ndb.DateTimeProperty(auto_now_add=True)
+class Doc927(ndb.Model):
+    d927_adder = ndb.UserProperty()
+    d927_url = ndb.StringProperty()
+    d927_date_created = ndb.DateTimeProperty(auto_now_add=True)
 
 

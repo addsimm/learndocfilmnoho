@@ -2,32 +2,27 @@
 <html xmlns = "http://www.w3.org/1999/html">
 	{% extends "base/base.html" %}
 
-    <body>
-	    {% block content %}
-		    <br>
-		    <p>
-		    <form action = "/" method = "get">
-		        Search flatpages: <input type = "text" name = "q" value = "search">
-		        <input type = "submit" value = "Submit">
-		    </form>
-		    </p>
-		    <p>Or pick a flatpage:</p>
-		    {%  if search_string  %}
-		       <p>*** Note: search string active: {{  search_string }} ***</p>
-		    {%  endif %}
+	<body>
+		{% block content %}
+			<form action = "/" method = "POST">
+				<h2>Add URL to short doc list for our 9/27/14 meeting:</h2>
+				<h3><label for="url">Paste URL for Documentary Here:</label></h3>
+				<input style="width:25%;" type = "url" name = "url" id="url" value = "- URL -">
+				<input type = "hidden" name = "adder" value ={{ user }}>
+				<input type = "submit" value = "Add to List">
+			</form>
+			<br>
+			<hr>
+			<br>
+			<h3>Documentaries to watch:</h3>
 
-		    {%  for flatpage_key in flatpages_keys  %}
-			    <ul>
-			    <li><a href = "display_flatpage/?{{ flatpage_key.id }}">{{ flatpage_key.id }}</a></li>
-			    </ul>
-		    {%  endfor %}
+			{%  for doc927 in doc927s  %}
+				<ul>
+				<li><a href = "{{ doc927.d927_url }}">{{ doc927.d927_url }}</a></li>
+				</ul>
+			{%  endfor %}
 
-		    or
-		    <br>
-		    <p>
-            <a href = "/create_flatpage/">Click to create a flatpage!</a>
-            </p>
-		    <p>Have a great day!</p>
-	    {% endblock content %}
-    </body>
+			<p>Have a great day!</p>
+		{% endblock content %}
+	</body>
 </html>

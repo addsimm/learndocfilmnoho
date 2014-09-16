@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <meta charset = "UTF-8">
-{# <link rel = "stylesheet" href = "style.css"/>  #}
+<!-- <link rel = "stylesheet" href = "style.css"/>  -->
 ** Base:   (base.html)<br>
 ** Header: (header.html)<br>
 <head>
@@ -10,33 +10,26 @@
 </head>
 ** End Header<br>
 <body>
-<br>
 <!--
 ** Sidebar:<br>
-    <div id = "sidebar">
-        {% block sidebar %}
-	        <ul>
-                <li><a href = "/">Home</a></li>
-                <li><a href = "/blog/">Blog</a></li>
-            </ul>
-        {% endblock %}
-    </div>
+	<div id = "sidebar">
+		{% block sidebar %}
+			<ul>
+				<li><a href = "/">Home</a></li>
+				<li><a href = "/blog/">Blog</a></li>
+			</ul>
+		{% endblock %}
+	</div>
 ** End Sidebar<br>
 -->
 ** Content: ({{ view }})<br>
-    <div id = "content">
-        {% block content %}{% endblock %}
-    </div>
+	<div id = "content">
+		{% block content %}{% endblock %}
+	</div>
 ** End Content<br>
-<br>
-
 </body>
-<br>
-<hr>
-<br>
 ** Footer: (footer.html)<br>
 {% include 'base/footer.html' %}
 <br>
 ** End Footer
-
 </html>
