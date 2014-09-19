@@ -4,9 +4,15 @@
 
 	<body>
 		{% block content %}
+			<h2>Download .pdf with definion of documentary for our 9/27/14 meeeting:</h2>
+			<h3><a href="<bucket>.storage.googleapis.com/<object>">What is a documentary?</a></h3>
+			<br>
+			<hr>
+			<br>
 			<form action = "/" method = "POST">
-				<h2>Add URL to short doc list for our 9/27/14 meeting:</h2>
-				<h3><label for="url">Paste URL for Documentary Here:</label></h3>
+				{% csrf_token %}
+				<h2>Add URL to short doc list:</h2>
+				<h3><label for="url">Paste short documentary's  URL  here for 9/27:</label></h3>
 				<input style="width:25%;" type = "url" name = "url" id="url" value = "- URL -">
 				<input type = "hidden" name = "adder" value ={{ user }}>
 				<input type = "submit" value = "Add to List">
