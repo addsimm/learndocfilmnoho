@@ -1,5 +1,5 @@
 import os
-import sys
+# import sys
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'ldfnh.settings'
 

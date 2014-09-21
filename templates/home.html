@@ -4,30 +4,38 @@
 
 	<body>
 		{% block content %}
-			<h2>Download .pdf with definion of documentary for our 9/27/14 meeeting:</h2>
-			<h3><a href="https://storage.googleapis.com/learndocfilmnoho.appspot.com/McLaneDocsChap.pdf">What is a documentary?</a></h3>
+			<div style = "padding-left:2.5%; padding-right: 2.5%;">
+			<h2>Download .pdf with definition of documentary for our 9/27/14 meeting:</h2>
+			<ul>
+			<li><h3><a href="https://storage.googleapis.com/learndocfilmnoho.appspot.com/McLaneDocsChap.pdf">What Is a Documentary?</a></h3></li>
+			</ul>
+			<h2>Here is the book Jane and Joan recommended after their search:</h2>
+			<ul>
+			<li><h3><a href = "http://www.Amzn.com/0240824156"><span style = "font-style: italic;">Shut Up and Shoot</span> </a></h3></li>
+			</ul>
+			<h2>Download .pdfs from <span style = "font-style: italic;">Shut Up and Shoot</span> to preview and to inform our learning goals discussion:</h2>
+			<ul>
+			<li><h3><a href = "https://storage.googleapis.com/learndocfilmnoho.appspot.com/ShutUpAndShootTOC2.pdf">SUAS Table of Contents</a></h3></li>
+			<li><h3><a href = "https://storage.googleapis.com/learndocfilmnoho.appspot.com/ShutUpAndShootPreface.pdf">SUAS Preface</a></h3></li>
+			</ul>
 			<br>
 			<hr>
-			<br>
+			<h2>Documentaries to watch for 9/27:</h2>
+				{% for doc927 in doc927s %}
+					<ul>
+					<li><a href = "{{ doc927.d927_url }}">{{ doc927.d927_url }}</a></li>
+					</ul>
+				{% endfor %}
 			<form action = "/" method = "POST">
 				{% csrf_token %}
-				<h2>Add URL to short doc list:</h2>
-				<h3><label for="url">Paste short documentary's  URL  here for 9/27:</label></h3>
+				<h2>Add short documentary to list -</h2>
+				<h3><label for="url">Paste URL here:</label></h3>
 				<input style="width:25%;" type = "url" name = "url" id="url" value = "- URL -">
 				<input type = "hidden" name = "adder" value ={{ user }}>
 				<input type = "submit" value = "Add to List">
 			</form>
+			</div>
 			<br>
-			<hr>
-			<br>
-			<h3>Documentaries to watch:</h3>
-
-			{%  for doc927 in doc927s  %}
-				<ul>
-				<li><a href = "{{ doc927.d927_url }}">{{ doc927.d927_url }}</a></li>
-				</ul>
-			{%  endfor %}
-
 			<p>Have a great day!</p>
 		{% endblock content %}
 	</body>

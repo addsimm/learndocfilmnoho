@@ -2,15 +2,13 @@
 
 import datetime
 from socket import gethostname
-import urllib2
 
 from django.core.context_processors import csrf
 from django.shortcuts import render_to_response, redirect
 from google.appengine.api import users
-from google.appengine.ext import blobstore
-
 
 from ldfnh.models import *
+
 
 def return_template_values(path):
     if users.get_current_user():
@@ -36,7 +34,6 @@ def return_template_values(path):
 
 def home(request):
     if request.method == 'POST':
-        url = request.POST.get('url')
         doc927 = Doc927(parent=doc927s_key())  # finicky about order of args in get or insert
 
         if users.get_current_user():
@@ -57,7 +54,7 @@ def home(request):
     template_values.update({'page_name': page_name,
                             'view': view,
                             'doc927s': doc927s,
-                           })
+                            })
 
     return render_to_response('home.html', template_values)
 
