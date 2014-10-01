@@ -3,14 +3,16 @@
 from google.appengine.ext import ndb
 
 
-def doc927s_key():
-    """Constructs a Datastore key for the Doc927s entity named doc927s."""
-    return ndb.Key('Doc927s', 'doc927s')
+def discussdocs_key():
+    """Constructs a Datastore key for the DiscussionDocs entity named DiscussionDocs."""
+    return ndb.Key('DiscussDocs', 'DiscussDocs')
 
 
-class Doc927(ndb.Model):
-    d927_adder = ndb.UserProperty()
-    d927_url = ndb.StringProperty()
-    d927_date_created = ndb.DateTimeProperty(auto_now_add=True)
+class DiscussDoc(ndb.Model):
+    dd_adder = ndb.UserProperty()
+    dd_url = ndb.StringProperty()
+    dd_title = ndb.StringProperty(default=dd_url)
+    dd_date_created = ndb.DateTimeProperty(auto_now_add=True)
+    dd_discussed = ndb.BooleanProperty(default=False)
 
 

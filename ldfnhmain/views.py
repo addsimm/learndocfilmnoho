@@ -34,36 +34,33 @@ def return_template_values(path):
 
 def home(request):
     if request.method == 'POST':
-        doc927 = Doc927(parent=doc927s_key())  # finicky about order of args in get or insert
+        discussdoc = DiscussDoc(parent=discussdocs_key())  # finicky about order of args in get or insert
 
         if users.get_current_user():
-            doc927.d927_adder = users.get_current_user()
+            discussdoc.dd_adder = users.get_current_user()
 
-        doc927.d927_url = request.POST.get('url')
-        doc927.put()
+        discussdoc.dd_url = request.POST.get('url')
+        if request.POST.get('title'):
+            discussdoc.dd_title = request.POST.get('title')
+        else:
+            discussdoc.dd_title = discussdoc.dd_url
+        discussdoc.put()
         return redirect('home')
 
     path = request.get_full_path()
     page_name = 'Home'
     view = path + page_name.lower()
-    doc927s_query = Doc927.query(ancestor=doc927s_key())
-    doc927s = doc927s_query.fetch(30)
+    discuss_docs_query = DiscussDoc.query(ancestor=discussdocs_key())
+    discussed_docs = discuss_docs_query.filter(DiscussDoc.dd_discussed == True).fetch(30)
+    current_docs = discuss_docs_query.filter(DiscussDoc.dd_discussed == False).fetch(30)
 
     template_values = return_template_values(path)
     template_values.update(csrf(request))
     template_values.update({'page_name': page_name,
                             'view': view,
-                            'doc927s': doc927s,
+                            'discussedDocs': discussed_docs,
+                            'currentDocs': current_docs
                             })
 
     return render_to_response('home.html', template_values)
 
-
-from google.appengine.ext.webapp import blobstore_handlers
-
-
-class UploadHandler(blobstore_handlers.BlobstoreUploadHandler):
-    def post(self):
-        upload_files = self.get_uploads('file')  # 'file' is file upload field in the form
-        blob_info = upload_files[0]
-        self.redirect('/serve/%s' % blob_info.key())

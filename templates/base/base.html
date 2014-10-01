@@ -1,35 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<meta charset = "UTF-8">
-<!-- <link rel = "stylesheet" href = "style.css"/>  -->
-** Base:   (base.html)<br>
-** Header: (header.html)<br>
+
+** Base: (base.html) ** Header: (header.html)<br>
 <head>
-	{%  include 'base/header.html' %}
-	{%  block header %}{% endblock header %}
+	<meta http-equiv = "X-UA-Compatible" content = "IE=9; IE=8; IE=7; IE=EDGE"/>
+	<meta charset = "utf-8"/>
+	<meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+	<link href = "/static/css/bootstrap.min.css" rel = "stylesheet" type = "text/css"/>
+	{% include 'base/header.html' %}
 </head>
-** End Header<br>
+** End Header ** Body: ({{ view }})<br>
 <body>
-<!--
-** Sidebar:<br>
-	<div id = "sidebar">
-		{% block sidebar %}
-			<ul>
-				<li><a href = "/">Home</a></li>
-				<li><a href = "/blog/">Blog</a></li>
-			</ul>
-		{% endblock %}
-	</div>
-** End Sidebar<br>
--->
-** Content: ({{ view }})<br>
 	<div id = "content">
-		{% block content %}{% endblock %}
+		{% block body %}{% endblock %}
 	</div>
-** End Content<br>
 </body>
-** Footer: (footer.html)<br>
-{% include 'base/footer.html' %}
-<br>
-** End Footer
+** End Body ** Footer: (footer.html)<br>
+<footer>
+	{% include 'base/footer.html' %}<br>
+</footer>
+** End Footer ** End Base
 </html>

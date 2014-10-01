@@ -1,17 +1,21 @@
 <!DOCTYPE html>
-	<!-- <link rel = "stylesheet" href = "style.css"/> need to create CSS -->
-	<meta charset = "UTF-8">
-	<title>{% block title %}Learn Doc Films in Noho | {{ page_name }}{% endblock %}</title>
-	<!--  Giving blockname is key -->
-	<h1 style="text-align:center;">Learning Documentary Filmmaking in NoHo<br>Meetup Website</h1>
-	<div style = "padding-left:2.5%; padding-bottom:2%; float:left; width:55%; border:dashed 2px;">
-		{% if user %}
-			<h2>Welcome {{ user }}! <a href = "{{ url|safe }}">click here to {{ url_linktext }}</a> </h2>
-		{% else %}
-			<h2>Welcome! Please sign in: <a href = "{{ url|safe }}">click here</a></h2>
-			Google Accounts Only - Website works without signing in.
-		{% endif %}
+<title>{% block title %}Learn Doc Films | {{ page_name }}{% endblock %}</title>
+<div class = "container">
+	<div class = "row">
+		<div class = "">
+			<h1>Learning Documentary Filmmaking in NoHo<br>Meetup Website</h1>
+		</div>
 	</div>
-	<br style = "clear:both;">
-	<br>
+</div>
+<div style = "padding-left:2.5%; padding-bottom:2%; border:dashed 2px;">
+	{% if user %}
+		<h2>Welcome {{ user }}! <a href = "{{ url|safe }}">click here to {{ url_linktext }}</a> </h2>
+	{% else %}
+		<h2>Welcome! Please sign in: <a href = "{{ url|safe }}">click here</a></h2>
+		Google Accounts Only - Website works without signing in.
+	{% endif %}
+</div>
+<br style = "clear:both;">
+
+
 

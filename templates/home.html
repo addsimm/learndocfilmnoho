@@ -3,40 +3,51 @@
 	{% extends "base/base.html" %}
 
 	<body>
-		{% block content %}
+		{% block body %}
 			<div style = "padding-left:2.5%; padding-right: 2.5%;">
-			<h2>Download .pdf with definition of documentary for our 9/27/14 meeting:</h2>
+			<h1>Resources:</h1>
+			<h2>An interesting definition of documentary films:</h2>
 			<ul>
 			<li><h3><a href="https://storage.googleapis.com/learndocfilmnoho.appspot.com/McLaneDocsChap.pdf">What Is a Documentary?</a></h3></li>
 			</ul>
-			<h2>Here is the book Jane and Joan recommended after their search:</h2>
+			<h2>The book we are working from:</h2>
 			<ul>
 			<li><h3><a href = "http://www.Amzn.com/0240824156"><span style = "font-style: italic;">Shut Up and Shoot</span> </a></h3></li>
 			</ul>
-			<h2>Download .pdfs from <span style = "font-style: italic;">Shut Up and Shoot</span> to preview and to inform our learning goals discussion:</h2>
+			<h3><span style = "font-style: italic;">Shut Up and Shoot</span> preview:</h3>
 			<ul>
-			<li><h3><a href = "https://storage.googleapis.com/learndocfilmnoho.appspot.com/ShutUpAndShootTOC2.pdf">SUAS Table of Contents</a></h3></li>
-			<li><h3><a href = "https://storage.googleapis.com/learndocfilmnoho.appspot.com/ShutUpAndShootPreface.pdf">SUAS Preface</a></h3></li>
+			<li><h4><a href = "https://storage.googleapis.com/learndocfilmnoho.appspot.com/ShutUpAndShootTOC2.pdf">SUAS Table of Contents</a></h4></li>
+			<li><h4><a href = "https://storage.googleapis.com/learndocfilmnoho.appspot.com/ShutUpAndShootPreface.pdf">SUAS Preface</a></h4></li>
 			</ul>
 			<br>
 			<hr>
-			<h2>Documentaries to watch for 9/27:</h2>
-				{% for doc927 in doc927s %}
+			<h2>Documentaries to be discussed at future meetings:</h2>
+				{% for DiscussDoc in currentDocs %}
 					<ul>
-					<li><a href = "{{ doc927.d927_url }}">{{ doc927.d927_url }}</a></li>
+					<li><h3><span style = "font-style: italic;">{{ DiscussDoc.dd_title }}</span>: <a href = "{{ DiscussDoc.dd_url }}">{{ DiscussDoc.dd_url }}</a></h3></li>
 					</ul>
 				{% endfor %}
+			<h2>Documentaries we have discussed:</h2>
+				{% for DiscussDoc in discussedDocs %}
+					<ul>
+					<li><h3><span style = "font-style: italic;">{{ DiscussDoc.dd_title }}</span>: <a href = "{{ DiscussDoc.dd_url }}">{{ DiscussDoc.dd_url }}</a></h3></li>
+					</ul>
+				{% endfor %}
+			<br>
+			<hr>
 			<form action = "/" method = "POST">
 				{% csrf_token %}
-				<h2>Add short documentary to list -</h2>
+				<h2><span style="color: rgb(255, 0, 0);">Add short documentary to pool:</span></h2>
 				<h3><label for="url">Paste URL here:</label></h3>
-				<input style="width:25%;" type = "url" name = "url" id="url" value = "- URL -">
-				<input type = "hidden" name = "adder" value ={{ user }}>
+				<input style="width:25%;" type = "url" name = "url" id="url">
+				<h3><label for = "title">Enter Title Here:</label></h3>
+				<input style = "width:25%;" type = "text" name = "title" id = "title">
+				<input type = "hidden" name = "adder" value ={{ user }}><br><br>
 				<input type = "submit" value = "Add to List">
 			</form>
 			</div>
 			<br>
 			<p>Have a great day!</p>
-		{% endblock content %}
+		{% endblock body %}
 	</body>
 </html>

@@ -6,8 +6,9 @@ threadsafe: true
 
 handlers:
 
-- url: /stylesheets
-  static_dir: stylesheets
+- url: /static/css
+  mime_type: text/css
+  static_dir: static/css
 
 - url: /.*
   script: main.app
