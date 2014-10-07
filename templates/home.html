@@ -4,50 +4,69 @@
 
 	<body>
 		{% block body %}
-			<div style = "padding-left:2.5%; padding-right: 2.5%;">
-			<h1>Resources:</h1>
-			<h2>An interesting definition of documentary films:</h2>
-			<ul>
-			<li><h3><a href="https://storage.googleapis.com/learndocfilmnoho.appspot.com/McLaneDocsChap.pdf">What Is a Documentary?</a></h3></li>
-			</ul>
-			<h2>The book we are working from:</h2>
-			<ul>
-			<li><h3><a href = "http://www.Amzn.com/0240824156"><span style = "font-style: italic;">Shut Up and Shoot</span> </a></h3></li>
-			</ul>
-			<h3><span style = "font-style: italic;">Shut Up and Shoot</span> preview:</h3>
-			<ul>
-			<li><h4><a href = "https://storage.googleapis.com/learndocfilmnoho.appspot.com/ShutUpAndShootTOC2.pdf">SUAS Table of Contents</a></h4></li>
-			<li><h4><a href = "https://storage.googleapis.com/learndocfilmnoho.appspot.com/ShutUpAndShootPreface.pdf">SUAS Preface</a></h4></li>
-			</ul>
-			<br>
-			<hr>
-			<h2>Documentaries to be discussed at future meetings:</h2>
-				{% for DiscussDoc in currentDocs %}
-					<ul>
-					<li><h3><span style = "font-style: italic;">{{ DiscussDoc.dd_title }}</span>: <a href = "{{ DiscussDoc.dd_url }}">{{ DiscussDoc.dd_url }}</a></h3></li>
-					</ul>
-				{% endfor %}
-			<h2>Documentaries we have discussed:</h2>
-				{% for DiscussDoc in discussedDocs %}
-					<ul>
-					<li><h3><span style = "font-style: italic;">{{ DiscussDoc.dd_title }}</span>: <a href = "{{ DiscussDoc.dd_url }}">{{ DiscussDoc.dd_url }}</a></h3></li>
-					</ul>
-				{% endfor %}
-			<br>
-			<hr>
-			<form action = "/" method = "POST">
-				{% csrf_token %}
-				<h2><span style="color: rgb(255, 0, 0);">Add short documentary to pool:</span></h2>
-				<h3><label for="url">Paste URL here:</label></h3>
-				<input style="width:25%;" type = "url" name = "url" id="url">
-				<h3><label for = "title">Enter Title Here:</label></h3>
-				<input style = "width:25%;" type = "text" name = "title" id = "title">
-				<input type = "hidden" name = "adder" value ={{ user }}><br><br>
-				<input type = "submit" value = "Add to List">
-			</form>
+		<div class="container">
+			<div class = "row" >
+				<div class="col-md-12">
+				<h2 style = "background-color: lightblue; padding-left: 1em;">Resources:</h2>
+				<div class="col-md-offset-1 col-md-11">
+				<dl>
+				<dt><h3>A definition of documentary films:<br></h3></dt>
+					<dd><h4><a href="https://storage.googleapis.com/learndocfilmnoho.appspot.com/McLaneDocsChap.pdf">
+						What Is a Documentary?</a></h4></dd>
+				<dt><h3>The book we are working from:<br></h3></dt>
+					<dd><h4>Amazon: <a href = "http://www.Amzn.com/0240824156"><span style = "font-style: italic;">Shut Up and Shoot</span></a></h4></dd>
+				<dt><h3><span style = "font-style: italic;">Shut Up and Shoot</span> preview:<br></h3></dt>
+				<dd><ul>
+					<li><h4><a href = "https://storage.googleapis.com/learndocfilmnoho.appspot.com/ShutUpAndShootTOC2.pdf">SUAS Table of Contents</a></h4></li>
+					<li><h4><a href = "https://storage.googleapis.com/learndocfilmnoho.appspot.com/ShutUpAndShootPreface.pdf">SUAS Preface</a></h4></li>
+				</ul></dd>
+				</dl>
+				</div>
 			</div>
-			<br>
-			<p>Have a great day!</p>
-		{% endblock body %}
+		</div>
+	</div>
+	<div class = "container">
+		<div class = "row">
+			<div class = "col-md-12" >
+				<h2 style = "background-color: lightblue; padding-left: 1em;"> Documentaries to be discussed at future meetings:</h2>
+					<ol>
+					{% for DiscussDoc in currentDocs %}
+						<li><h3><span style = "font-style: italic;">{{ DiscussDoc.dd_title }}
+							</span>: <a href = "{{ DiscussDoc.dd_url }}">{{ DiscussDoc.dd_url }}</a></h3></li>
+					{% endfor %}
+					</ol>
+			</div>
+		</div>
+		<br><br>
+		<div class="row">
+			<div class = "col-md-12">
+				<h2 style = "background-color: lightblue; padding-left: 1em"> Documentaries we have discussed:</h2>
+					<ol>
+					{% for DiscussDoc in discussedDocs %}
+						<li><h3><span style = "font-style: italic;">{{ DiscussDoc.dd_title }}
+							</span>: <a href = "{{ DiscussDoc.dd_url }}">{{ DiscussDoc.dd_url }}</a></h3></li>
+					{% endfor %}
+					</ol>
+			</div>
+		</div>
+		<br><br>
+		<div class = "row">
+			<div class="col-md-12 col">
+				<h2 style = "background-color:red; padding-left: 1em;"> Add short documentary to pool:</h2>
+				<form action = "/" method = "POST">
+					{% csrf_token %}
+					<h3><label for="url">Paste URL here:</label></h3>
+					<input style="width:25%;" type = "url" name = "url" id="url">
+					<h3><label for = "title">Enter Title Here:</label></h3>
+					<input style = "width:25%;" type = "text" name = "title" id = "title">
+					<input type = "hidden" name = "adder" value ={{ user }}><br><br>
+					<input type = "submit" value = "Add to List">
+				</form>
+			</div>
+		</div>
+	</div>
+	<br>
+	<p>Have a great day!</p>
+	{% endblock body %}
 	</body>
 </html>
